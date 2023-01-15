@@ -1,0 +1,26 @@
+on:
+  push:
+    paths:
+      - 'src/**'
+      - '.github/**'
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  generate:
+    name: Generate repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - name: Run generator
+        run: cd src; node fix-up.js; node index.js; node directors-cut.js; cd ..
+      - name: Commit repository
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Generate repository"
+          git push
