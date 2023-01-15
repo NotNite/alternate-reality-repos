@@ -31,7 +31,7 @@ async function getOfficialRepoNames() {
 function makeName() {
   const both = ["Ultimate", "Extreme"];
   const prefixes = [...both, "Super", "Hyper"];
-  const suffixes = [...both, "Expanded", "Enhanced", "Plus", "2"];
+  const suffixes = [...both, "Expanded", "Enhanced", "Plus", "2", "Rewritten"];
 
   const allPlugins = [
     ...officialRepoNames,
@@ -47,12 +47,13 @@ function makeName() {
 
   let name = allPlugins[rand(0, allPlugins.length - 1)];
 
-  for (let i = 0; i < titleCount; i++) {
+  let appliedTitles = 0;
+  while (appliedTitles < titleCount) {
     let choosingInFront = rand(0, 1) === 1;
     let pool = choosingInFront ? prefixes : suffixes;
     let title = pool[rand(0, pool.length - 1)];
 
-    if (!title) continue;
+    if (name.contains(title)) continue; // don't apply twice
 
     if (choosingInFront) {
       name = `${title} ${name}`;

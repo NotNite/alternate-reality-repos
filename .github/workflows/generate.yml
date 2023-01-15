@@ -1,8 +1,8 @@
 on:
-  push:
-    paths:
-      - 'src/**'
-      - '.github/**'
+#  push:
+#    paths:
+#      - 'src/**'
+#      - '.github/**'
   schedule:
     - cron: '0 0 * * *'
 
