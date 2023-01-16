@@ -53,13 +53,15 @@ function makeName() {
     let pool = choosingInFront ? prefixes : suffixes;
     let title = pool[rand(0, pool.length - 1)];
 
-    if (name.contains(title)) continue; // don't apply twice
+    if (name.includes(title)) continue; // don't apply twice
 
     if (choosingInFront) {
       name = `${title} ${name}`;
     } else {
       name = `${name} ${title}`;
     }
+
+    appliedTitles++;
   }
 
   return name + ` [Alternate Reality Repos API ${API_LEVEL}]`;
