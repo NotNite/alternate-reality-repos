@@ -14,6 +14,6 @@ for (let i = 0; i < repos.length; i++) {
 
 const allPluginsFlat = allPlugins.flat();
 fs.writeFileSync(
-  "../directors-cut.json",
+  "../repo.json",
   JSON.stringify(allPluginsFlat, null, 2)
 );
